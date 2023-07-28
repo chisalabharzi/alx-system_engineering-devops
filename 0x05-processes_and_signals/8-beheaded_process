@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Bash script that kills the process in task 7
+# kill "7-highlander" process
 
 pkill -f -SIGKILL 7-highlander
