@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# script that configure HAProxy on loadserver
+
+apt-get -y install --no-install-recommends software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.0
+apt-get -y update
+apt-get -y install haproxy=2.0.\*
+
+cat >> /etc/haproxy/haproxy.cfg << EOF
+
+frontend Local_Server
+	bind *:80
+	mode http
+	default_backend Web_Server
+
+backend Web_Server
+	balance roundrobin
+	mode http
+	server web-01 35.174.205.207:80 check
+	server web-02 54.174.195.151:80 check
+
+EOF
+
+# restart server
+service haproxy restart
