@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# script that configures Nginx to run and listen on port 80, IPv6
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
